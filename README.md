@@ -8,3 +8,5 @@ Following Testcases are supported:
 2. Valid JSON response Check
 3. Pagination mandatory fields check
 4. Data mandatory fields check
+5. Email Address Validation
+6. HTTP Response Code check
