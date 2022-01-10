@@ -10,3 +10,4 @@ Following Testcases are supported:
 4. Data mandatory fields check
 5. Email Address Validation
 6. HTTP Response Code check
+7. No authentication Check
