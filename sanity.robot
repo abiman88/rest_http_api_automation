@@ -2,6 +2,7 @@
 Library           RequestsLibrary
 Library           Collections
 Library           OperatingSystem
+Variables         variable.py
 
 *** Variables ***
 
@@ -65,11 +66,43 @@ Get Response Valid Email Address
     Log    TC is Success
 
 Get Response Code 404
-    [Documentation]    Test case to check URI response code
+    [Documentation]    Test case to check URI response code Not Found
     [Tags]    Connectivity Test
     ${response}=    GET    ${URI}
     Log    ${response.reason}
     Should Not Be Equal As Integers    404    ${response.status_code}
+    Log    TC is Success
+
+Get Response Code 401
+    [Documentation]    Test case to check URI response code Unauthorized
+    [Tags]    Connectivity Test
+    ${response}=    GET    ${URI}
+    Log    ${response.reason}
+    Should Not Be Equal As Integers    401    ${response.status_code}
+    Log    TC is Success
+
+Get Response Code 500
+    [Documentation]    Test case to check URI response code Internal Server Error
+    [Tags]    Connectivity Test
+    ${response}=    GET    ${URI}
+    Log    ${response.reason}
+    Should Not Be Equal As Integers    500    ${response.status_code}
+    Log    TC is Success
+
+Get Response Code 503
+    [Documentation]    Test case to check URI response code Service Unavailable
+    [Tags]    Connectivity Test
+    ${response}=    GET    ${URI}
+    Log    ${response.reason}
+    Should Not Be Equal As Integers    503    ${response.status_code}
+    Log    TC is Success
+
+Get Request Authorisation Header
+    [Documentation]    Test case to check if URI is sending with Authorisation Header
+    [Tags]    Functionality Test
+    ${headers}    Create Dictionary    Authorization=Bearer abcde
+    ${response}=    GET    ${URI}    headers=${headers}
+    Status Should Be    OK    ${response}
     Log    TC is Success
 
 *** Keywords ***
