@@ -1,0 +1,29 @@
+==============================================================================
+Sanity                                                                        
+==============================================================================
+Get Request Test :: Test case to check if URI is responding           | PASS |
+------------------------------------------------------------------------------
+Get Request Test Valid Response :: Test case to check if URI is re... | PASS |
+------------------------------------------------------------------------------
+Get Response Pagination :: Test case to check if URI is responding... | PASS |
+------------------------------------------------------------------------------
+Get Response Data :: Test case to check if URI is responding with ... | PASS |
+------------------------------------------------------------------------------
+Get Response Valid Email Address :: Test case to check if URI is r... | PASS |
+------------------------------------------------------------------------------
+Get Response Code Not Found :: Test case to check URI response cod... | PASS |
+------------------------------------------------------------------------------
+Get Response Code Unauthorized :: Test case to check URI response ... | PASS |
+------------------------------------------------------------------------------
+Get Response Code Internal Server Error :: Test case to check URI ... | PASS |
+------------------------------------------------------------------------------
+Get Response Code Service Unavailable :: Test case to check URI re... | PASS |
+------------------------------------------------------------------------------
+Get Request Authorisation Header :: Test case to check if URI is s... | PASS |
+------------------------------------------------------------------------------
+Sanity                                                                | PASS |
+10 tests, 10 passed, 0 failed
+==============================================================================
+Output:  D:\Source Code\ABI\reports\output.xml
+Log:     D:\Source Code\ABI\reports\log.html
+Report:  D:\Source Code\ABI\reports\report.html
