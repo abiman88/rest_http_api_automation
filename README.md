@@ -10,4 +10,5 @@ Following Testcases are supported:
 4. Data mandatory fields check
 5. Email Address Validation
 6. HTTP Response Code check
-7. No authentication Check
+7. No authentication Check 
+# implemented json validation using jsonschema library. Due to limitation in python version installed in  my system, not able to implement test cases robotframework-jsonvalidator library.
