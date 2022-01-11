@@ -11,4 +11,4 @@ Following Testcases are supported:
 5. Email Address Validation
 6. HTTP Response Code check
 7. No authentication Check 
-Note: implemented json validation using jsonschema library. Due to limitation in python version installed in  my system, not able to implement test cases robotframework-jsonvalidator library.
+8. Note: implemented json validation using jsonschema library. Due to limitation in python version installed in  my system, not able to implement test cases robotframework-jsonvalidator library.
