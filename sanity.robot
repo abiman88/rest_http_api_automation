@@ -1,7 +1,9 @@
 *** Settings ***
+Suite Setup       Init JsonSchema
 Library           RequestsLibrary
 Library           Collections
 Library           OperatingSystem
+Library           jsonschema
 Variables         variable.py
 
 *** Variables ***
@@ -19,7 +21,8 @@ Get Request Test Valid Response
     [Tags]    Functionality Test
     ${response}=    GET    ${URI}
     Status Should Be    OK    ${response}
-    Evaluate    json.dumps(${response.json()})    json
+    ${response_json}=    Set Variable    ${response.json()}
+    Evaluate    jsonschema.validate(instance=${response_json}, schema=${schema})
     Log    TC is Success
 
 Get Response Pagination
@@ -65,7 +68,7 @@ Get Response Valid Email Address
     END
     Log    TC is Success
 
-Get Response Code 404
+Get Response Code Not Found
     [Documentation]    Test case to check URI response code Not Found
     [Tags]    Connectivity Test
     ${response}=    GET    ${URI}
@@ -73,7 +76,7 @@ Get Response Code 404
     Should Not Be Equal As Integers    404    ${response.status_code}
     Log    TC is Success
 
-Get Response Code 401
+Get Response Code Unauthorized
     [Documentation]    Test case to check URI response code Unauthorized
     [Tags]    Connectivity Test
     ${response}=    GET    ${URI}
@@ -81,7 +84,7 @@ Get Response Code 401
     Should Not Be Equal As Integers    401    ${response.status_code}
     Log    TC is Success
 
-Get Response Code 500
+Get Response Code Internal Server Error
     [Documentation]    Test case to check URI response code Internal Server Error
     [Tags]    Connectivity Test
     ${response}=    GET    ${URI}
@@ -89,7 +92,7 @@ Get Response Code 500
     Should Not Be Equal As Integers    500    ${response.status_code}
     Log    TC is Success
 
-Get Response Code 503
+Get Response Code Service Unavailable
     [Documentation]    Test case to check URI response code Service Unavailable
     [Tags]    Connectivity Test
     ${response}=    GET    ${URI}
@@ -100,7 +103,7 @@ Get Response Code 503
 Get Request Authorisation Header
     [Documentation]    Test case to check if URI is sending with Authorisation Header
     [Tags]    Functionality Test
-    ${headers}    Create Dictionary    Authorization=Bearer abcde
+    ${headers}    Create Dictionary    Authorization=Basic
     ${response}=    GET    ${URI}    headers=${headers}
     Status Should Be    OK    ${response}
     Log    TC is Success
@@ -111,3 +114,8 @@ Get This Value From Dictionary
     ${KeyIsPresent}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${Dictionary Name}    ${Key}
     ${Value}=    Run Keyword If    ${KeyIsPresent}    Get From Dictionary    ${Dictionary Name}    ${Key}
     Return From Keyword    ${Value}
+
+Init JsonSchema
+    ${schema_str}=    Get file    schema.json
+    ${schema}=    Evaluate    json.loads('''${schema_str}''')    json
+    Set Suite Variable    ${schema}
