@@ -48,8 +48,7 @@ Get Response Data
     Log    ${datas}
     FOR    ${dt}    IN    @{data}
         Log    ${dt}
-        ${val}=    Get This Value From Dictionary    ${datas}    ${dt}
-        Should Not Be Equal    '${val}'    'None'
+        Dictionary Should Contain Key    ${datas}    ${dt}
     END
     END
     Log    TC is Success
