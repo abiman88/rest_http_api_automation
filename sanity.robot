@@ -45,10 +45,12 @@ Get Response Data
     ${resp}=    GET    ${URI}
     Status Should Be    OK    ${resp}
     FOR    ${datas}    IN    @{resp.json()}[data]
-    Log    ${datas}
-    FOR    ${dt}    IN    @{data}
-        Log    ${dt}
-        Dictionary Should Contain Key    ${datas}    ${dt}
+    #Log    ${datas}
+    #Log    ${resp.json()}[data][0]
+    #Dictionaries Should Be Equal    ${datas}    ${resp.json()}[data][0]    msg=None    values=False
+    FOR    ${attr}    IN    @{resp.json()}[data][0]
+        #    Log    ${attr}
+        Dictionary Should Contain Key    ${datas}    ${attr}
     END
     END
     Log    TC is Success
